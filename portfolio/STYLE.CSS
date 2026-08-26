@@ -1,0 +1,237 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#FFAE00,#FFCD00);
+min-height:100vh;
+display:flex;
+flex-direction:column;
+color:#222;
+}
+
+/* ---------- NAVBAR ---------- */
+
+.navbar{
+background:white;
+display:flex;
+align-items:center;
+padding:20px 40px;
+box-shadow:0 3px 12px rgba(0,0,0,0.1);
+position:relative;
+}
+
+.logo{
+font-weight:bold;
+font-size:20px;
+}
+
+.logo span{
+display:block;
+font-size:12px;
+color:#FF8D00;
+}
+
+/* centered tabs */
+
+.nav-links{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:40px;
+list-style:none;
+}
+
+.nav-links a{
+text-decoration:none;
+color:black;
+font-weight:600;
+font-size:18px;
+position:relative;
+}
+
+/* underline animation */
+
+.nav-links a::after{
+content:"";
+position:absolute;
+width:0%;
+height:2px;
+left:0;
+bottom:-5px;
+background:#FF8D00;
+transition:0.3s;
+}
+
+.nav-links a:hover::after{
+width:100%;
+}
+
+/* socials */
+
+.socials{
+margin-left:auto;
+display:flex;
+gap:20px;
+}
+
+.socials img{
+width:34px;
+cursor:pointer;
+transition:0.25s;
+}
+
+.socials img:hover{
+transform:scale(1.4);
+}
+
+/* ---------- HERO ---------- */
+
+.hero{
+text-align:center;
+padding:120px 20px 80px;
+}
+
+.hero h1{
+font-size:52px;
+margin-bottom:20px;
+}
+
+.hero p{
+max-width:650px;
+margin:auto;
+margin-bottom:35px;
+font-size:18px;
+}
+
+/* ---------- BUTTON ---------- */
+
+.cv-button{
+background:#FF8D00;
+color:white;
+padding:14px 28px;
+text-decoration:none;
+border-radius:8px;
+font-weight:bold;
+transition:0.25s;
+}
+
+.cv-button:hover{
+background:#ff6f00;
+transform:translateY(-2px);
+}
+
+/* ---------- ABOUT ---------- */
+
+.about{
+max-width:850px;
+margin:auto;
+padding:60px 20px 100px;
+text-align:center;
+line-height:1.7;
+}
+
+.about h2{
+margin-bottom:25px;
+font-size:32px;
+}
+
+/* ---------- PROJECTS ---------- */
+
+.projects{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
+max-width:1100px;
+margin:60px auto;
+padding:0 20px;
+}
+
+.project{
+background:white;
+padding:30px;
+border-radius:12px;
+box-shadow:0 6px 20px rgba(0,0,0,0.1);
+transition:0.25s;
+}
+
+.project:hover{
+transform:translateY(-6px);
+}
+
+/* ---------- BLOG ---------- */
+
+.blog-container{
+max-width:800px;
+margin:60px auto;
+padding:0 20px;
+}
+
+.blog-post{
+background:white;
+padding:30px;
+border-radius:12px;
+margin-bottom:25px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.blog-post h3{
+margin-bottom:10px;
+}
+
+/* ---------- CONTACT ---------- */
+
+.contact-section{
+padding:80px 20px;
+text-align:center;
+}
+
+.contact-form{
+display:flex;
+flex-direction:column;
+max-width:520px;
+margin:auto;
+gap:20px;
+}
+
+.contact-form input,
+.contact-form textarea{
+padding:14px;
+border-radius:6px;
+border:1px solid #ccc;
+font-size:15px;
+}
+
+.contact-form textarea{
+min-height:140px;
+resize:vertical;
+}
+
+.contact-form button{
+background:#FF8D00;
+color:white;
+border:none;
+padding:14px;
+border-radius:6px;
+font-weight:bold;
+cursor:pointer;
+transition:0.2s;
+}
+
+.contact-form button:hover{
+background:#ff6f00;
+}
+
+/* ---------- FOOTER ---------- */
+
+footer{
+background:white;
+text-align:center;
+padding:20px;
+margin-top:auto;
+font-size:14px;
+}
