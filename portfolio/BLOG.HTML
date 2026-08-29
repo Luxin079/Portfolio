@@ -1,59 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Blog | Mads Hoogeveen</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog | Mads Hoogeveen</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<nav class="navbar">
+  <nav class="navbar">
+    <div class="logo">
+      Mads Hoogeveen
+      <span>Game Developer / Designer</span>
+    </div>
 
-<div class="logo">
-Mads Hoogeveen
-<span>Game Developer / Designer</span>
-</div>
+    <ul class="nav-links">
+      <li><a href="index.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
 
-<ul class="nav-links">
-<li><a href="index.html">About</a></li>
-<li><a href="projects.html">Projects</a></li>
-<li><a href="blog.html">Blog</a></li>
-<li><a href="contact.html">Contact</a></li>
-</ul>
+    <div class="socials">
+      <a href="https://github.com/Luxin079" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub">
+      </a>
+      <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+        <img src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord">
+      </a>
+    </div>
+  </nav>
 
-<div class="socials">
+  <main>
+    <section class="page-header">
+      <p class="eyebrow">Development notes</p>
+      <h1>Blog</h1>
+    </section>
 
-<a href="https://github.com/Luxin079" target="_blank">
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg">
-</a>
+    <div class="blog-container">
+      <article class="blog-post featured">
+        <p class="blog-meta">April 2026 · Prototype</p>
+        <h3>First steps in building a gameplay loop</h3>
+        <p>
+          This week I focused on creating a smaller loop for a prototype and testing whether the core actions felt satisfying.
+          I learned quickly that small changes in timing, feedback and pacing can completely change the player experience.
+        </p>
+      </article>
 
-<a href="https://discord.com" target="_blank">
-<img src="https://cdn.simpleicons.org/discord/5865F2">
-</a>
+      <div class="blog-grid">
+        <article class="blog-post">
+          <p class="blog-meta">March 2026 · Design</p>
+          <h3>Learning Unity more deeply</h3>
+          <p>I spent time improving my scripting structure and understanding how systems connect in a game project.</p>
+        </article>
 
-</div>
+        <article class="blog-post">
+          <p class="blog-meta">February 2026 · Feedback</p>
+          <h3>Testing mechanics with play sessions</h3>
+          <p>Watching people play helped me notice where tension and clarity were missing and where the game felt strongest.</p>
+        </article>
 
-</nav>
+        <article class="blog-post">
+          <p class="blog-meta">January 2026 · Practice</p>
+          <h3>Improving UI readability</h3>
+          <p>I experimented with menu structure and visual hierarchy to keep the interface clear and easy to understand.</p>
+        </article>
+      </div>
+    </div>
+  </main>
 
-<div class="blog-container">
-
-<div class="blog-post">
-<h3>First Development Log</h3>
-<p>Today I started working on my first game mechanic.</p>
-</div>
-
-<div class="blog-post">
-<h3>Learning Unity</h3>
-<p>This week I learned more about scripting and game logic.</p>
-</div>
-
-</div>
-
-<footer>
-© 2026 Mads Hoogeveen
-</footer>
+  <footer>
+    © 2026 Mads Hoogeveen
+  </footer>
 
 </body>
 </html>
