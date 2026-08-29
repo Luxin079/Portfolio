@@ -43,7 +43,7 @@
           that feel rewarding to play. My focus is on clear design, good mechanics and polished player feedback.
         </p>
         <div class="hero-actions">
-          <a class="cv-button" href="cv.html" target="_blank">View CV</a>
+          <button class="cv-button" type="button" data-open-cv-modal>View CV</button>
           <a class="secondary-button" href="projects.html">See my projects</a>
         </div>
       </div>
@@ -78,16 +78,16 @@
       <h2>Skills</h2>
       <div class="skills-grid">
         <article class="skill-card">
-          <h3>Gameplay Programming</h3>
-          <p>Prototype mechanics, scripts and systems with performance in mind.</p>
+          <h3>Story Design</h3>
+          <p>I am skilled in creating creative and exiting stories for games.</p>
         </article>
         <article class="skill-card">
           <h3>Game Design</h3>
           <p>Design loops, progression and player feedback that make gameplay satisfying.</p>
         </article>
         <article class="skill-card">
-          <h3>UI & UX</h3>
-          <p>Build interfaces that feel clear, readable and easy to use.</p>
+          <h3>Player Movement</h3>
+          <p> I am good at designing and implementing 2D/3Dplayer movement scripts/mechanics.</p>
         </article>
         <article class="skill-card">
           <h3>Level Design</h3>
@@ -124,8 +124,8 @@
     </section>
 
     <section class="cta-panel">
-      <h2>Looking for a game developer or creative teammate?</h2>
-      <p>I am open to student projects, collaborations and internship opportunities.</p>
+      <h2>Looking for a game designer/developer?</h2>
+      <p>I am open to collaborations and internship opportunities.</p> 
       <a class="cv-button" href="contact.html">Contact me</a>
     </section>
   </main>
@@ -133,6 +133,71 @@
   <footer>
     © 2026 Mads Hoogeveen
   </footer>
+
+  <div class="cv-modal" id="cvModal" aria-hidden="true">
+    <div class="cv-modal-content" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
+      <button class="cv-modal-close" type="button" aria-label="Sluit CV">×</button>
+      
+
+      <div class="cv-modal-image-wrap">
+        <img id="cvPreviewImage" src="https://cdn.discordapp.com/attachments/973264074030850079/1543353985614876723/image.png?ex=6a948fe8&is=6a933e68&hm=98ec7b5452d5cd2ad2aa0146ad78f8a8672f4f6e67505bc59b2633bdc7ed4bae&" alt="CV foto">
+      </div>
+
+      
+
+     
+        
+        <button class="cv-button" id="cvCloseModal" type="button">Sluiten</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('cvModal');
+    const openButtons = document.querySelectorAll('[data-open-cv-modal]');
+    const closeButton = document.querySelector('.cv-modal-close');
+    const closeModalButton = document.getElementById('cvCloseModal');
+    const loadImageButton = document.getElementById('cvLoadImage');
+    const imageUrlInput = document.getElementById('cvImageUrl');
+    const previewImage = document.getElementById('cvPreviewImage');
+
+    function openModal() {
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    function loadImage() {
+      const url = imageUrlInput.value.trim();
+      if (!url) {
+        previewImage.src = 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80';
+        return;
+      }
+      previewImage.src = url;
+    }
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', openModal);
+    });
+
+    closeButton.addEventListener('click', closeModal);
+    closeModalButton.addEventListener('click', closeModal);
+    loadImageButton.addEventListener('click', loadImage);
+
+    modal.addEventListener('click', (event) => {
+      if (event.target === modal) closeModal();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  </script>
 
 </body>
 </html>
