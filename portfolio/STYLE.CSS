@@ -20,6 +20,7 @@
 
 html{
   scroll-behavior:smooth;
+  overflow-x:hidden;
 }
 
 body{
@@ -28,6 +29,7 @@ body{
   display:flex;
   flex-direction:column;
   color:var(--dark);
+  overflow-x:hidden;
 }
 
 img{
@@ -82,12 +84,36 @@ main{
   font-size:18px;
   position:relative;
   display:inline-block;
-  transition:transform 0.2s ease, color 0.2s ease;
+  padding:8px 12px;
+  border-radius:8px;
+  transition:transform 0.2s ease, color 0.2s ease, opacity 0.2s ease;
+}
+
+.nav-links a::before{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border:1px solid var(--accent);
+  border-radius:8px;
+  opacity:0;
+  transition:opacity 0.2s ease;
+}
+
+.nav-links a.active::before{
+  opacity:1;
+}
+
+.nav-links a.active{
+  color:var(--accent);
 }
 
 .nav-links a:hover{
   transform:scale(1.12);
   color:var(--accent);
+}
+
+.nav-links a:hover::before{
+  opacity:0;
 }
 
 .nav-links a::after{
@@ -459,10 +485,92 @@ main{
   width:100%;
   height:100%;
   object-fit:cover;
+  cursor:pointer;
+  transition:transform 0.2s ease, filter 0.2s ease;
+}
+
+.game-preview img:hover{
+  transform:scale(1.02);
+  filter:brightness(1.04);
+}
+
+.preview-modal{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  background:rgba(17,17,17,0.82);
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.2s ease, visibility 0.2s ease;
+  z-index:1000;
+}
+
+.preview-modal.active{
+  opacity:1;
+  visibility:visible;
+}
+
+.preview-modal-backdrop{
+  position:absolute;
+  inset:0;
+}
+
+.preview-modal-content{
+  position:relative;
+  z-index:1;
+  width:min(1100px, 92vw);
+  max-height:90vh;
+  background:#111;
+  border:3px solid #fff;
+  border-radius:20px;
+  padding:18px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.35);
+}
+
+.preview-modal-content img{
+  display:block;
+  width:100%;
+  max-height:84vh;
+  object-fit:contain;
+  border-radius:12px;
+  background:#000;
+}
+
+.preview-modal-close{
+  position:absolute;
+  top:-18px;
+  right:-18px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:2px solid var(--border);
+  background:#fff;
+  color:var(--dark);
+  font-size:2rem;
+  line-height:1;
+  cursor:pointer;
+  box-shadow:0 6px 20px rgba(0,0,0,0.18);
+}
+
+body.modal-open{
+  overflow:hidden;
 }
 
 .project-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  min-height:270px;
   padding:24px 24px 28px;
+}
+
+.project-content{
+  display:flex;
+  flex-direction:column;
+  flex:1;
 }
 
 .project-info h3{
@@ -471,24 +579,53 @@ main{
 
 .project-info p{
   line-height:1.6;
-  margin-bottom:16px;
+  margin:0;
 }
 
-.tag-row{
-  display:flex;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:18px;
+.tag-grid{
+  display:grid;
+  grid-template-columns:repeat(2, minmax(110px, 1fr));
+  gap:8px 10px;
+  margin:12px 0 18px;
 }
 
-.tag-row span{
-  display:inline-block;
+.tag-grid span{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   background:#fff3db;
   border:1px solid var(--border);
   border-radius:999px;
   padding:6px 10px;
   font-size:0.75rem;
   font-weight:bold;
+  text-align:center;
+  min-height:30px;
+}
+
+.project-actions{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:20px;
+}
+
+.github-link{
+  display:block;
+  text-align:center;
+  text-decoration:none;
+  background:#fff;
+  color:var(--dark);
+  border:2px solid var(--border);
+  border-radius:10px;
+  padding:14px 18px;
+  font-weight:bold;
+  transition:0.25s ease;
+}
+
+.github-link:hover{
+  background:#f7f7f7;
+  transform:translateY(-2px);
 }
 
 /* ---------- BLOG ---------- */
@@ -709,13 +846,14 @@ footer{
   .navbar{
     flex-wrap:wrap;
     justify-content:center;
-    gap:18px;
-    padding:20px;
+    gap:16px;
+    padding:18px 16px;
   }
 
   .logo{
     width:100%;
     text-align:center;
+    font-size:18px;
   }
 
   .nav-links{
@@ -724,12 +862,18 @@ footer{
     order:3;
     width:100%;
     justify-content:center;
-    gap:20px;
+    gap:14px 18px;
     flex-wrap:wrap;
+  }
+
+  .nav-links a{
+    font-size:15px;
+    padding:6px 10px;
   }
 
   .socials{
     margin-left:0;
+    gap:12px;
   }
 
   .hero,
@@ -745,6 +889,38 @@ footer{
   .hero,
   .about{
     width:calc(100% - 24px);
+  }
+
+  .projects{
+    padding:0 12px;
+    gap:20px;
+  }
+
+  .game-preview{
+    height:220px;
+  }
+
+  .project-info{
+    min-height:auto;
+    padding:20px 18px 22px;
+  }
+}
+
+@media (max-width: 560px){
+  .navbar{
+    flex-direction:column;
+    align-items:center;
+  }
+
+  .nav-links{
+    width:100%;
+    justify-content:space-between;
+    gap:8px 12px;
+  }
+
+  .socials{
+    width:100%;
+    justify-content:center;
   }
 }
 
@@ -766,8 +942,45 @@ footer{
   .cv-button,
   .secondary-button,
   .play-link,
-  .contact-form button{
+  .contact-form button,
+  .github-link{
     text-align:center;
     width:100%;
+  }
+
+  .projects{
+    padding:0 10px;
+    margin-top:24px;
+  }
+
+  .tag-grid{
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+    gap:8px;
+  }
+
+  .tag-grid span{
+    font-size:0.72rem;
+    padding:6px 8px;
+  }
+
+  .project-actions{
+    gap:10px;
+  }
+
+  .preview-modal{
+    padding:14px;
+  }
+
+  .preview-modal-content{
+    width:min(100%, 92vw);
+    padding:10px;
+  }
+
+  .preview-modal-close{
+    top:-10px;
+    right:-10px;
+    width:36px;
+    height:36px;
+    font-size:1.7rem;
   }
 }
