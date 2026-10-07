@@ -135,18 +135,13 @@
   <div class="cv-modal" id="cvModal" aria-hidden="true">
     <div class="cv-modal-content" role="dialog" aria-modal="true" aria-labelledby="cvModalTitle">
       <button class="cv-modal-close" type="button" aria-label="Sluit CV">×</button>
-      
+      <h2 id="cvModalTitle">Curriculum Vitae</h2>
 
       <div class="cv-modal-image-wrap">
         <img id="cvPreviewImage" src="https://cdn.discordapp.com/attachments/973264074030850079/1543353985614876723/image.png?ex=6a948fe8&is=6a933e68&hm=98ec7b5452d5cd2ad2aa0146ad78f8a8672f4f6e67505bc59b2633bdc7ed4bae&" alt="CV foto">
       </div>
 
-      
-
-     
-        
-        <button class="cv-button" id="cvCloseModal" type="button">Sluiten</button>
-      </div>
+      <button class="cv-button" id="cvCloseModal" type="button">Sluiten</button>
     </div>
   </div>
 
@@ -155,9 +150,6 @@
     const openButtons = document.querySelectorAll('[data-open-cv-modal]');
     const closeButton = document.querySelector('.cv-modal-close');
     const closeModalButton = document.getElementById('cvCloseModal');
-    const loadImageButton = document.getElementById('cvLoadImage');
-    const imageUrlInput = document.getElementById('cvImageUrl');
-    const previewImage = document.getElementById('cvPreviewImage');
 
     function openModal() {
       modal.classList.add('active');
@@ -169,22 +161,12 @@
       modal.setAttribute('aria-hidden', 'true');
     }
 
-    function loadImage() {
-      const url = imageUrlInput.value.trim();
-      if (!url) {
-        previewImage.src = 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80';
-        return;
-      }
-      previewImage.src = url;
-    }
-
     openButtons.forEach((button) => {
       button.addEventListener('click', openModal);
     });
 
     closeButton.addEventListener('click', closeModal);
     closeModalButton.addEventListener('click', closeModal);
-    loadImageButton.addEventListener('click', loadImage);
 
     modal.addEventListener('click', (event) => {
       if (event.target === modal) closeModal();
