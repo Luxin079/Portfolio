@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=20261029-varela">
+  <link rel="stylesheet" href="style.css?v=20261029-media">
 </head>
 
 <body class="projects-page">
@@ -46,7 +46,7 @@
     <section class="projects">
       <article class="project">
         <div class="game-preview">
-          <img src="https://cdn.imageurlgenerator.com/uploads/7adc9a49-6938-415e-aa34-de5a235f5d71.gif" alt="Gameplay preview of Old Vs Young: The Fighting Game">
+          <img src="assets/projects/old-vs-young-gameplay.gif" alt="Gameplay preview of Old Vs Young: The Fighting Game" width="800" height="424">
         </div>
         <div class="project-info">
           <div class="project-content">
@@ -179,14 +179,16 @@
     const backgroundImages = new Map();
     const projects = document.querySelectorAll('.project');
     let activePlayButton = null;
+    let backdropHideTimer;
 
     const showProjectBackdrop = (button) => {
+      clearTimeout(backdropHideTimer);
       const project = button.closest('.project');
       if (!document.body.classList.contains('showing-gameplay')) {
         const rows = new Map();
-        const activeRowTop = Math.round(project.getBoundingClientRect().top);
+        const activeRowTop = project.offsetTop;
         projects.forEach((card) => {
-          const top = Math.round(card.getBoundingClientRect().top);
+          const top = card.offsetTop;
           if (top <= activeRowTop) {
             const height = parseFloat(getComputedStyle(card.querySelector('.game-preview')).getPropertyValue('--preview-height'));
             rows.set(top, Math.max(rows.get(top) || 0, height));
@@ -213,6 +215,7 @@
     };
 
     const hideProjectBackdrop = () => {
+      clearTimeout(backdropHideTimer);
       activePlayButton = null;
       projectBackdrop.classList.remove('active');
       document.body.classList.remove('showing-gameplay');
@@ -223,7 +226,9 @@
         if (event.pointerType !== 'touch') showProjectBackdrop(button);
       });
       button.addEventListener('pointerleave', () => {
-        if (activePlayButton === button) hideProjectBackdrop();
+        if (activePlayButton === button) {
+          backdropHideTimer = setTimeout(hideProjectBackdrop, 120);
+        }
       });
       button.addEventListener('click', hideProjectBackdrop);
     });

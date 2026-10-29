@@ -254,6 +254,8 @@ main{
 .cv-modal-content{
   position:relative;
   width:min(680px, 100%);
+  max-height:calc(100dvh - 40px);
+  overflow-y:auto;
   background:#fff;
   border:2px solid var(--border);
   border-radius:18px;
@@ -285,12 +287,13 @@ main{
   border:2px solid var(--border);
   background:#f6f6f6;
   border-radius:12px;
-  overflow:hidden;
+  max-height:60vh;
+  overflow:auto;
 }
 
 .cv-modal-image-wrap img {
   width:100%;
-  max-height:72vh;
+  height:auto;
   object-fit:contain;
   display:block;
   background:#fff;
@@ -512,7 +515,7 @@ main{
 }
 
 .project:hover{
-  transform:translateY(-6px);
+  box-shadow:0 12px 28px rgba(0,0,0,0.14);
 }
 
 .game-preview{
@@ -668,6 +671,33 @@ body.modal-open{
   width:100%;
   text-align:center;
   font-size:1rem;
+}
+
+.play-link:hover{
+  transform:none;
+}
+
+.cv-document-page{
+  max-width:1000px;
+  width:calc(100% - 40px);
+  margin:60px auto;
+}
+
+.cv-document-page h1{
+  margin-bottom:20px;
+}
+
+.cv-document-pages{
+  display:grid;
+  gap:24px;
+  margin-top:24px;
+}
+
+.cv-document-pages img{
+  width:100%;
+  height:auto;
+  border:2px solid var(--border);
+  border-radius:12px;
 }
 
 .development-link,

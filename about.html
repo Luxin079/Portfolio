@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=20261029-varela">
+  <link rel="stylesheet" href="style.css?v=20261029-media">
 </head>
 
 <body>
@@ -141,10 +141,13 @@
       <h2 id="cvModalTitle">Curriculum Vitae</h2>
 
       <div class="cv-modal-image-wrap">
-        <img id="cvPreviewImage" src="https://cdn.discordapp.com/attachments/973264074030850079/1543353985614876723/image.png?ex=6a948fe8&is=6a933e68&hm=98ec7b5452d5cd2ad2aa0146ad78f8a8672f4f6e67505bc59b2633bdc7ed4bae&" alt="CV foto">
+        <img src="assets/documents/cv-page-1.png" alt="CV van Mads Hoogeveen, pagina 1" loading="lazy">
       </div>
 
-      <button class="cv-button" id="cvCloseModal" type="button">Sluiten</button>
+      <div class="cv-modal-actions">
+        <a class="cv-button" href="assets/documents/cv-mads.pdf" download>Download CV (PDF)</a>
+        <button class="secondary-button" id="cvCloseModal" type="button">Sluiten</button>
+      </div>
     </div>
   </div>
 
@@ -157,11 +160,13 @@
     function openModal() {
       modal.classList.add('active');
       modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
     }
 
     function closeModal() {
       modal.classList.remove('active');
       modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
     }
 
     openButtons.forEach((button) => {
