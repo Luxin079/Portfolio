@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-info">
+  <link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
   <nav class="navbar">
@@ -40,6 +40,19 @@
       </dl>
       <p class="project-timeline-note">The engine and language are confirmed by the local project. No GitHub commit history was available to verify the timeline.</p>
 
+      <section class="project-code" aria-labelledby="code-title">
+        <h2 id="code-title">First-person camera</h2>
+        <p>Mouse input steers the camera. The vertical angle is limited and sent to the other players.</p>
+        <div class="project-code-file">FastActionPlayerController.cs</div>
+        <pre tabindex="0" aria-label="C# excerpt from FastActionPlayerController.cs"><code>private void UpdateLook()
+{
+    Vector2 mouse = Mouse.current.delta.ReadValue() * mouseSensitivity;
+    transform.Rotate(0f, mouse.x, 0f, Space.Self);
+    pitch = Mathf.Clamp(pitch - mouse.y, -82f, 82f);
+    if (rig.cameraPivot) rig.cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
+    AimPitch.Value = pitch;
+}</code></pre>
+      </section>
     </article>
   </main>
 

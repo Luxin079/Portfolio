@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-info">
+  <link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
   <nav class="navbar">
@@ -39,7 +39,20 @@
         <div><dt>Development span</dt><dd>About 6 months</dd></div>
       </dl>
       <p class="project-timeline-note">The dates show my first and latest recorded commits.</p>
-      <img class="project-detail-image" src="assets/projects/towerino-defense-gameplay.webp" alt="Gameplay preview of Towerino Defense" width="640" height="367">
+      <video class="project-detail-image project-detail-video"
+        src="assets/projects/towerino-defense-preview.mp4" poster="assets/projects/towerino-defense-poster.webp"
+        width="770" height="440" aria-label="Gameplay preview"
+        autoplay muted loop playsinline controls preload="metadata">
+        <a href="assets/projects/towerino-defense-preview.mp4">Open gameplay video</a>
+      </video>
+
+      <section class="project-code" aria-labelledby="code-title">
+        <h2 id="code-title">Enemy spawn timing</h2>
+        <p>Each group has its own spawn rate, which controls the pause between enemies.</p>
+        <div class="project-code-file">WaveSpawner.cs</div>
+        <pre tabindex="0" aria-label="C# excerpt from WaveSpawner.cs"><code>SpawnEnemy(group.enemyPrefab);
+yield return new WaitForSeconds(1f / group.spawnRate);</code></pre>
+      </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/Luxin079/Tower-Defense-Game/commits/main/" target="_blank" rel="noopener noreferrer">View commit history</a>
       </div>

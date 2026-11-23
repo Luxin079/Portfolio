@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-info">
+  <link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
   <nav class="navbar">
@@ -39,7 +39,25 @@
         <div><dt>Development span</dt><dd>5 weeks</dd></div>
       </dl>
       <p class="project-timeline-note">The dates run from my first gameplay commit to version 1.0. I updated the README on 28 Oct 2026.</p>
-      <img class="project-detail-image" src="assets/projects/space-yugis-gameplay.webp" alt="Gameplay preview of Space Yugis" width="640" height="381">
+      <video class="project-detail-image project-detail-video"
+        src="assets/projects/space-yugis-preview.mp4" poster="assets/projects/space-yugis-poster.webp"
+        width="840" height="500" aria-label="Gameplay preview"
+        autoplay muted loop playsinline controls preload="metadata">
+        <a href="assets/projects/space-yugis-preview.mp4">Open gameplay video</a>
+      </video>
+
+      <section class="project-code" aria-labelledby="code-title">
+        <h2 id="code-title">Camera zoom between waves</h2>
+        <p>The camera zooms out smoothly to fit larger enemy formations.</p>
+        <div class="project-code-file">LevelManager.cs</div>
+        <pre tabindex="0" aria-label="C# excerpt from LevelManager.cs"><code>private void UpdateCameraZoom()
+{
+    if (gameplayCamera == null || !gameplayCamera.orthographic)
+        return;
+    gameplayCamera.orthographicSize = Mathf.MoveTowards(gameplayCamera.orthographicSize,
+        targetCameraSize, cameraZoomSpeed * Time.unscaledDeltaTime);
+}</code></pre>
+      </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/ghostbusterbob/SpaceYugis/commits/Mads/" target="_blank" rel="noopener noreferrer">View commit history</a>
       </div>

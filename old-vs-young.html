@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-info">
+  <link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
   <nav class="navbar">
@@ -39,7 +39,25 @@
         <div><dt>Development span</dt><dd>About 9½ months</dd></div>
       </dl>
       <p class="project-timeline-note">The dates show my first and latest recorded commits.</p>
-      <img class="project-detail-image" src="assets/projects/old-vs-young-gameplay.webp" alt="Gameplay preview of Old Vs Young: The Fighting Game" width="640" height="339">
+      <video class="project-detail-image project-detail-video"
+        src="assets/projects/old-vs-young-preview.mp4" poster="assets/projects/old-vs-young-poster.webp"
+        width="1200" height="636" aria-label="Gameplay preview"
+        autoplay muted loop playsinline controls preload="metadata">
+        <a href="assets/projects/old-vs-young-preview.mp4">Open gameplay video</a>
+      </video>
+
+      <section class="project-code" aria-labelledby="code-title">
+        <h2 id="code-title">Attack knockback</h2>
+        <p>Upward attacks send the opponent up, while other attacks push them away.</p>
+        <div class="project-code-file">Player.cs</div>
+        <pre tabindex="0" aria-label="C# excerpt from Player.cs"><code>if (Keyboard.current.wKey.isPressed)
+    knockDir = new Vector2(0, 1).normalized;
+else
+    knockDir = new Vector2(direction, 0.5f).normalized;
+
+float knockForce = GetCurrentAttackKnockback();
+enemyRb.AddForce(knockDir * knockForce, ForceMode2D.Impulse);</code></pre>
+      </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/notsosaltyasiankid/Old-vs-young-fighting-game/commits/mads/" target="_blank" rel="noopener noreferrer">View commit history</a>
       </div>

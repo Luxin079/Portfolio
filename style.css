@@ -828,11 +828,51 @@ body.modal-open{
 }
 
 .project-detail-image{
+  display:block;
   width:100%;
   height:auto;
   margin-top:24px;
   border:2px solid var(--border);
   border-radius:12px;
+}
+
+.project-detail-video{
+  background:#111;
+}
+
+.project-code{
+  margin-top:28px;
+}
+
+.project-code h2{
+  margin-bottom:8px;
+  font-size:1.35rem;
+}
+
+.project-code-file{
+  margin-top:14px;
+  padding:10px 14px;
+  background:var(--soft);
+  border:1px solid var(--border);
+  border-radius:10px 10px 0 0;
+  font-weight:bold;
+  overflow-wrap:anywhere;
+}
+
+.project-code pre{
+  padding:14px;
+  overflow-x:auto;
+  background:#202124;
+  color:#f4f4f5;
+  border:1px solid var(--border);
+  border-radius:0 0 10px 10px;
+}
+
+.project-code code{
+  font-family:Consolas, 'Courier New', monospace;
+  font-size:0.875rem;
+  line-height:1.65;
+  tab-size:4;
 }
 
 .project-detail-actions{

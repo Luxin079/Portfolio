@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-info">
+  <link rel="stylesheet" href="style.css?v=project-media">
 </head>
 <body>
   <nav class="navbar">
@@ -40,6 +40,17 @@
       </dl>
       <p class="project-timeline-note">In development. The dates show my first and latest recorded commits.</p>
       <img class="project-detail-image" src="assets/projects/never-miss-the-bus-menu.webp" alt="Main menu of Never Miss the Bus" width="1000" height="563">
+
+      <section class="project-code" aria-labelledby="code-title">
+        <h2 id="code-title">Bus seat interaction</h2>
+        <p>You can use a seat when it is free and your character is close enough.</p>
+        <div class="project-code-file">BusSeat.cs</div>
+        <pre tabindex="0" aria-label="C# excerpt from BusSeat.cs"><code>public bool CanUse(Transform player)
+{
+    return !IsOccupied &amp;&amp; player != null &amp;&amp;
+           Vector3.Distance(player.position, SitPoint.position) &lt;= interactDistance;
+}</code></pre>
+      </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/Luxin079/NeverMissTheBus-GAME/commits/main/" target="_blank" rel="noopener noreferrer">View commit history</a>
       </div>
