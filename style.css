@@ -615,6 +615,29 @@ body.modal-open{
   overflow:hidden;
 }
 
+.project-image-dialog{
+  position:fixed;
+  inset:0;
+  margin:auto;
+  padding:0;
+  border:0;
+  overflow:visible;
+  background:transparent;
+}
+
+.project-image-dialog::backdrop{
+  background:rgba(17,17,17,0.82);
+}
+
+.project-image-dialog .preview-modal-content{
+  width:min(1100px, calc(100vw - 48px));
+  max-height:none;
+}
+
+.project-image-dialog img{
+  max-height:calc(100dvh - 80px);
+}
+
 .project-info{
   display:flex;
   flex-direction:column;
@@ -858,6 +881,11 @@ body.modal-open{
   aspect-ratio:16 / 9;
   object-fit:contain;
   background:#161616;
+}
+
+.project-media-card a{
+  display:block;
+  cursor:zoom-in;
 }
 
 .project-media-card a:focus-visible{
