@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-media">
+  <link rel="stylesheet" href="style.css?v=project-galleries">
 </head>
 <body>
   <nav class="navbar">
@@ -39,19 +39,94 @@
         <div><dt>Development span</dt><dd>About 6 months</dd></div>
       </dl>
       <p class="project-timeline-note">The dates show my first and latest recorded commits.</p>
-      <video class="project-detail-image project-detail-video"
-        src="assets/projects/towerino-defense-preview.mp4" poster="assets/projects/towerino-defense-poster.webp"
-        width="770" height="440" aria-label="Gameplay preview"
-        autoplay muted loop playsinline controls preload="metadata">
-        <a href="assets/projects/towerino-defense-preview.mp4">Open gameplay video</a>
-      </video>
 
-      <section class="project-code" aria-labelledby="code-title">
-        <h2 id="code-title">Enemy spawn timing</h2>
-        <p>Each group has its own spawn rate, which controls the pause between enemies.</p>
-        <div class="project-code-file">WaveSpawner.cs</div>
-        <pre tabindex="0" aria-label="C# excerpt from WaveSpawner.cs"><code>SpawnEnemy(group.enemyPrefab);
+      <section class="project-section" aria-labelledby="gameplay-title">
+        <h2 id="gameplay-title">How it plays</h2>
+        <p>Enemies enter on a fixed route while you choose towers from the shop and place them around turns. The wave counter, lives and cash stay visible throughout the round. The wave system separates enemy types into groups, so each group can have its own size and spawn rate.</p>
+      </section>
+
+      <section class="project-section" aria-labelledby="images-title">
+        <h2 id="images-title">Images</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <a href="assets/projects/towerino-defense-still-1.webp" aria-label="Open full-size image: Starting map and tower shop">
+            <img src="assets/projects/towerino-defense-still-1.webp" alt="Starting map and tower shop" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Starting map and tower shop</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/towerino-defense-still-2.webp" aria-label="Open full-size image: Early-wave tower setup">
+            <img src="assets/projects/towerino-defense-still-2.webp" alt="Early-wave tower setup" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Early-wave tower setup</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/towerino-defense-still-3.webp" aria-label="Open full-size image: Later wave with more towers">
+            <img src="assets/projects/towerino-defense-still-3.webp" alt="Later wave with more towers" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Later wave with more towers</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="clips-title">
+        <h2 id="clips-title">Gameplay clips</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <video src="assets/projects/towerino-defense-preview.mp4" poster="assets/projects/towerino-defense-still-1.webp"
+            aria-label="Full run preview" muted loop playsinline controls preload="none">
+            <a href="assets/projects/towerino-defense-preview.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Full run preview</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/towerino-defense-clip-2.mp4" poster="assets/projects/towerino-defense-still-2.webp"
+            aria-label="Defending the first bends" muted loop playsinline controls preload="none">
+            <a href="assets/projects/towerino-defense-clip-2.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Defending the first bends</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/towerino-defense-clip-3.mp4" poster="assets/projects/towerino-defense-still-3.webp"
+            aria-label="Adding towers for a later wave" muted loop playsinline controls preload="none">
+            <a href="assets/projects/towerino-defense-clip-3.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Adding towers for a later wave</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">C# examples</h2>
+        <section class="project-code" aria-labelledby="code-example-1">
+          <h3 id="code-example-1">Enemy spawn timing</h3>
+          <p>Each group has its own spawn rate, which controls the pause between enemies.</p>
+          <div class="project-code-file">WaveSpawner.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from WaveSpawner.cs"><code>SpawnEnemy(group.enemyPrefab);
 yield return new WaitForSeconds(1f / group.spawnRate);</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-2">
+          <h3 id="code-example-2">Wave rewards</h3>
+          <p>The reward starts with a base amount and scales with the multiplier. The bonus rises at intervals as the waves progress.</p>
+          <div class="project-code-file">WaveSpawner.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from WaveSpawner.cs"><code>int reward = Mathf.RoundToInt(baseReward * rewardMultiplier);
+MoneyManager.Instance.AddMoney(reward);
+
+if (currentWaveIndex % 3 == 0)
+    rewardMultiplier += 0.15f;</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-3">
+          <h3 id="code-example-3">Wave counter</h3>
+          <p>The current wave index is clamped before it reaches the on-screen label, keeping the displayed count within the configured range.</p>
+          <div class="project-code-file">WaveSpawner.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from WaveSpawner.cs"><code>if (waveText != null)
+{
+    int displayWave = Mathf.Clamp(currentWaveIndex, 0, totalWaveCount - 1);
+    waveText.text = $"Wave: {displayWave}/{totalWaveCount - 1}";
+}</code></pre>
+        </section>
       </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/Luxin079/Tower-Defense-Game/commits/main/" target="_blank" rel="noopener noreferrer">View commit history</a>

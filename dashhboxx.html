@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-media">
+  <link rel="stylesheet" href="style.css?v=project-galleries">
 </head>
 <body>
   <nav class="navbar">
@@ -40,11 +40,56 @@
       </dl>
       <p class="project-timeline-note">The engine and language are confirmed by the local project. No GitHub commit history was available to verify the timeline.</p>
 
-      <section class="project-code" aria-labelledby="code-title">
-        <h2 id="code-title">First-person camera</h2>
-        <p>Mouse input steers the camera. The vertical angle is limited and sent to the other players.</p>
-        <div class="project-code-file">FastActionPlayerController.cs</div>
-        <pre tabindex="0" aria-label="C# excerpt from FastActionPlayerController.cs"><code>private void UpdateLook()
+      <section class="project-section" aria-labelledby="gameplay-title">
+        <h2 id="gameplay-title">How it plays</h2>
+        <p>DashhBoxx has team deathmatch and free-for-all. Sprinting, jumping and sliding give you ways to move around the arena during a fight. The controller collects movement and camera input, while the server runs the match countdown.</p>
+      </section>
+
+      <section class="project-section" aria-labelledby="images-title">
+        <h2 id="images-title">Images</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <a href="assets/projects/dashhboxx-model-preview.webp" aria-label="Open full-size image: First-person model test in Unity">
+            <img src="assets/projects/dashhboxx-model-preview.webp" alt="First-person model test in Unity" loading="lazy" decoding="async">
+          </a>
+          <figcaption>First-person model test in Unity</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Image coming soon</div>
+          <figcaption>Arena screenshot</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Image coming soon</div>
+          <figcaption>Match interface screenshot</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="clips-title">
+        <h2 id="clips-title">Gameplay clips</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>Movement and sliding</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>Team deathmatch</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>Free-for-all</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">C# examples</h2>
+        <section class="project-code" aria-labelledby="code-example-1">
+          <h3 id="code-example-1">First-person camera</h3>
+          <p>Mouse input steers the camera. The vertical angle is limited and sent to the other players.</p>
+          <div class="project-code-file">FastActionPlayerController.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from FastActionPlayerController.cs"><code>private void UpdateLook()
 {
     Vector2 mouse = Mouse.current.delta.ReadValue() * mouseSensitivity;
     transform.Rotate(0f, mouse.x, 0f, Space.Self);
@@ -52,6 +97,30 @@
     if (rig.cameraPivot) rig.cameraPivot.localRotation = Quaternion.Euler(pitch, 0f, 0f);
     AimPitch.Value = pitch;
 }</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-2">
+          <h3 id="code-example-2">Movement input</h3>
+          <p>The four movement directions are combined into one vector. Clamping its length keeps diagonal movement from getting a speed boost.</p>
+          <div class="project-code-file">FastActionPlayerController.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from FastActionPlayerController.cs"><code>Vector2 input = Vector2.zero;
+if (FastActionPlayerUI.Held(FastActionPlayerUI.Left)) input.x -= 1f;
+if (FastActionPlayerUI.Held(FastActionPlayerUI.Right)) input.x += 1f;
+if (FastActionPlayerUI.Held(FastActionPlayerUI.Back)) input.y -= 1f;
+if (FastActionPlayerUI.Held(FastActionPlayerUI.Forward)) input.y += 1f;
+input = Vector2.ClampMagnitude(input, 1f);</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-3">
+          <h3 id="code-example-3">Match countdown</h3>
+          <p>The countdown uses the server clock so the match can start at the same time for everyone.</p>
+          <div class="project-code-file">FastActionPlayerStats.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from FastActionPlayerStats.cs"><code>private void BeginCountdown()
+{
+    Phase.Value = MatchPhase.Countdown;
+    PhaseEndsAt.Value = NetworkManager.Singleton.ServerTime.Time + startCountdown;
+}</code></pre>
+        </section>
       </section>
     </article>
   </main>

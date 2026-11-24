@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-media">
+  <link rel="stylesheet" href="style.css?v=project-galleries">
 </head>
 <body>
   <nav class="navbar">
@@ -39,24 +39,98 @@
         <div><dt>Development span</dt><dd>About 9½ months</dd></div>
       </dl>
       <p class="project-timeline-note">The dates show my first and latest recorded commits.</p>
-      <video class="project-detail-image project-detail-video"
-        src="assets/projects/old-vs-young-preview.mp4" poster="assets/projects/old-vs-young-poster.webp"
-        width="1200" height="636" aria-label="Gameplay preview"
-        autoplay muted loop playsinline controls preload="metadata">
-        <a href="assets/projects/old-vs-young-preview.mp4">Open gameplay video</a>
-      </video>
 
-      <section class="project-code" aria-labelledby="code-title">
-        <h2 id="code-title">Attack knockback</h2>
-        <p>Upward attacks send the opponent up, while other attacks push them away.</p>
-        <div class="project-code-file">Player.cs</div>
-        <pre tabindex="0" aria-label="C# excerpt from Player.cs"><code>if (Keyboard.current.wKey.isPressed)
+      <section class="project-section" aria-labelledby="gameplay-title">
+        <h2 id="gameplay-title">How it plays</h2>
+        <p>The young and old fighters have different attacks and stats, so spacing and timing matter. Jump over an opponent, choose an attack direction and use knockback to push them toward the edge. Holding jump adds height, and fast fall lets you get back to the platform sooner.</p>
+      </section>
+
+      <section class="project-section" aria-labelledby="images-title">
+        <h2 id="images-title">Images</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <a href="assets/projects/old-vs-young-still-1.webp" aria-label="Open full-size image: The arena and score display">
+            <img src="assets/projects/old-vs-young-still-1.webp" alt="The arena and score display" loading="lazy" decoding="async">
+          </a>
+          <figcaption>The arena and score display</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/old-vs-young-still-2.webp" aria-label="Open full-size image: Fighters meeting near the platform edge">
+            <img src="assets/projects/old-vs-young-still-2.webp" alt="Fighters meeting near the platform edge" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Fighters meeting near the platform edge</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/old-vs-young-still-3.webp" aria-label="Open full-size image: Fighters above the platform">
+            <img src="assets/projects/old-vs-young-still-3.webp" alt="Fighters above the platform" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Fighters above the platform</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="clips-title">
+        <h2 id="clips-title">Gameplay clips</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <video src="assets/projects/old-vs-young-preview.mp4" poster="assets/projects/old-vs-young-still-1.webp"
+            aria-label="Full match preview" muted loop playsinline controls preload="none">
+            <a href="assets/projects/old-vs-young-preview.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Full match preview</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/old-vs-young-clip-2.mp4" poster="assets/projects/old-vs-young-still-2.webp"
+            aria-label="Movement and close-range fighting" muted loop playsinline controls preload="none">
+            <a href="assets/projects/old-vs-young-clip-2.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Movement and close-range fighting</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/old-vs-young-clip-3.mp4" poster="assets/projects/old-vs-young-still-3.webp"
+            aria-label="Aerial exchanges" muted loop playsinline controls preload="none">
+            <a href="assets/projects/old-vs-young-clip-3.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Aerial exchanges</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">C# examples</h2>
+        <section class="project-code" aria-labelledby="code-example-1">
+          <h3 id="code-example-1">Attack knockback</h3>
+          <p>Upward attacks send the opponent up, while other attacks push them away.</p>
+          <div class="project-code-file">Player.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from Player.cs"><code>if (Keyboard.current.wKey.isPressed)
     knockDir = new Vector2(0, 1).normalized;
 else
     knockDir = new Vector2(direction, 0.5f).normalized;
 
 float knockForce = GetCurrentAttackKnockback();
 enemyRb.AddForce(knockDir * knockForce, ForceMode2D.Impulse);</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-2">
+          <h3 id="code-example-2">Variable jump height</h3>
+          <p>Holding jump adds a little upward velocity while the fighter is already rising. The extra lift stops once they begin falling.</p>
+          <div class="project-code-file">Player.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from Player.cs"><code>if (Keyboard.current.wKey.isPressed &amp;&amp; !isGrounded &amp;&amp; rb.linearVelocity.y &gt; 0)
+    rb.linearVelocity += Vector2.up * extraJumpForce * Time.deltaTime;</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-3">
+          <h3 id="code-example-3">Attack hitbox timing</h3>
+          <p>The chosen hitboxes are active for the duration of the attack, then turned off. This gives each attack a limited window to connect.</p>
+          <div class="project-code-file">Player.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from Player.cs"><code>foreach (BoxCollider2D box in chosenAttack.hitboxes)
+    if (box != null) box.enabled = true;
+
+yield return new WaitForSeconds(attack.attackDuration);
+
+foreach (BoxCollider2D box in chosenAttack.hitboxes)
+    if (box != null) box.enabled = false;</code></pre>
+        </section>
       </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/notsosaltyasiankid/Old-vs-young-fighting-game/commits/mads/" target="_blank" rel="noopener noreferrer">View commit history</a>

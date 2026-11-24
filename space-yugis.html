@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-media">
+  <link rel="stylesheet" href="style.css?v=project-galleries">
 </head>
 <body>
   <nav class="navbar">
@@ -39,24 +39,107 @@
         <div><dt>Development span</dt><dd>5 weeks</dd></div>
       </dl>
       <p class="project-timeline-note">The dates run from my first gameplay commit to version 1.0. I updated the README on 28 Oct 2026.</p>
-      <video class="project-detail-image project-detail-video"
-        src="assets/projects/space-yugis-preview.mp4" poster="assets/projects/space-yugis-poster.webp"
-        width="840" height="500" aria-label="Gameplay preview"
-        autoplay muted loop playsinline controls preload="metadata">
-        <a href="assets/projects/space-yugis-preview.mp4">Open gameplay video</a>
-      </video>
 
-      <section class="project-code" aria-labelledby="code-title">
-        <h2 id="code-title">Camera zoom between waves</h2>
-        <p>The camera zooms out smoothly to fit larger enemy formations.</p>
-        <div class="project-code-file">LevelManager.cs</div>
-        <pre tabindex="0" aria-label="C# excerpt from LevelManager.cs"><code>private void UpdateCameraZoom()
+      <section class="project-section" aria-labelledby="gameplay-title">
+        <h2 id="gameplay-title">How it plays</h2>
+        <p>Choose a ship, dodge enemy fire and look for upgrades as the formation moves across the screen. Later waves can grow wider, and the camera makes room for the larger formation. Bosses and meteors change where it is safe to fly.</p>
+      </section>
+
+      <section class="project-section" aria-labelledby="images-title">
+        <h2 id="images-title">Images</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <a href="assets/projects/space-yugis-still-1.webp" aria-label="Open full-size image: Arcade title screen">
+            <img src="assets/projects/space-yugis-still-1.webp" alt="Arcade title screen" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Arcade title screen</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/space-yugis-still-2.webp" aria-label="Open full-size image: Attacking the first formation">
+            <img src="assets/projects/space-yugis-still-2.webp" alt="Attacking the first formation" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Attacking the first formation</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/space-yugis-still-3.webp" aria-label="Open full-size image: A wider formation in wave two">
+            <img src="assets/projects/space-yugis-still-3.webp" alt="A wider formation in wave two" loading="lazy" decoding="async">
+          </a>
+          <figcaption>A wider formation in wave two</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="clips-title">
+        <h2 id="clips-title">Gameplay clips</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <video src="assets/projects/space-yugis-preview.mp4" poster="assets/projects/space-yugis-still-1.webp"
+            aria-label="Full arcade run" muted loop playsinline controls preload="none">
+            <a href="assets/projects/space-yugis-preview.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Full arcade run</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/space-yugis-clip-2.mp4" poster="assets/projects/space-yugis-still-2.webp"
+            aria-label="First enemy wave" muted loop playsinline controls preload="none">
+            <a href="assets/projects/space-yugis-clip-2.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>First enemy wave</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <video src="assets/projects/space-yugis-clip-3.mp4" poster="assets/projects/space-yugis-still-3.webp"
+            aria-label="Wave two and shield pickup active" muted loop playsinline controls preload="none">
+            <a href="assets/projects/space-yugis-clip-3.mp4">Open gameplay clip</a>
+          </video>
+          <figcaption>Wave two and shield pickup active</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">C# examples</h2>
+        <section class="project-code" aria-labelledby="code-example-1">
+          <h3 id="code-example-1">Camera zoom between waves</h3>
+          <p>The camera zooms out smoothly to fit larger enemy formations.</p>
+          <div class="project-code-file">LevelManager.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from LevelManager.cs"><code>private void UpdateCameraZoom()
 {
     if (gameplayCamera == null || !gameplayCamera.orthographic)
-        return;
+          return;
     gameplayCamera.orthographicSize = Mathf.MoveTowards(gameplayCamera.orthographicSize,
-        targetCameraSize, cameraZoomSpeed * Time.unscaledDeltaTime);
+          targetCameraSize, cameraZoomSpeed * Time.unscaledDeltaTime);
 }</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-2">
+          <h3 id="code-example-2">Wider enemy formations</h3>
+          <p>After a set wave, the formation gains columns at regular intervals. A maximum keeps it from growing beyond the designed width.</p>
+          <div class="project-code-file">LevelManager.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from LevelManager.cs"><code>int columns = Mathf.Max(1, baseCols);
+if (currentLevel &gt;= widerFormationStartWave)
+{
+    int extraColumns = 1 + (currentLevel - widerFormationStartWave) /
+          Mathf.Max(1, wavesPerExtraColumn);
+    columns += extraColumns;
+}
+return Mathf.Min(columns, Mathf.Max(1, maximumFormationColumns));</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-3">
+          <h3 id="code-example-3">Formation descent</h3>
+          <p>When the formation reverses direction, it can step down if its timer has elapsed. The bottom limit prevents enemies descending too far.</p>
+          <div class="project-code-file">LevelManager.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from LevelManager.cs"><code>direction *= -1;
+if (Time.time &lt; nextAllowedDescentTime)
+    return;
+
+float safeDescent = Mathf.Max(0f, descentAmount);
+if (GetFormationBottom() - safeDescent &lt; lowestEnemyMovementY)
+    return;
+
+formationContainer.position += Vector3.down * safeDescent;
+nextAllowedDescentTime = Time.time + minimumDescentInterval;</code></pre>
+        </section>
       </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/ghostbusterbob/SpaceYugis/commits/Mads/" target="_blank" rel="noopener noreferrer">View commit history</a>

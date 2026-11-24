@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Varela+Round&amp;display=swap">
-  <link rel="stylesheet" href="style.css?v=project-media">
+  <link rel="stylesheet" href="style.css?v=project-galleries">
 </head>
 <body>
   <nav class="navbar">
@@ -39,17 +39,93 @@
         <div><dt>Development span</dt><dd>About 4½ months so far</dd></div>
       </dl>
       <p class="project-timeline-note">In development. The dates show my first and latest recorded commits.</p>
-      <img class="project-detail-image" src="assets/projects/never-miss-the-bus-menu.webp" alt="Main menu of Never Miss the Bus" width="1000" height="563">
 
-      <section class="project-code" aria-labelledby="code-title">
-        <h2 id="code-title">Bus seat interaction</h2>
-        <p>You can use a seat when it is free and your character is close enough.</p>
-        <div class="project-code-file">BusSeat.cs</div>
-        <pre tabindex="0" aria-label="C# excerpt from BusSeat.cs"><code>public bool CanUse(Transform player)
+      <section class="project-section" aria-labelledby="gameplay-title">
+        <h2 id="gameplay-title">How it plays</h2>
+        <p>The story opens at school, follows the friends onto the last bus and puts the player in control after a crash. Explore in first person, interact with nearby objects and follow clues through the village and forest. The 2D character sprites sit inside a 3D world.</p>
+      </section>
+
+      <section class="project-section" aria-labelledby="images-title">
+        <h2 id="images-title">Images</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <a href="assets/projects/never-miss-the-bus-menu.webp" aria-label="Open full-size image: Main menu artwork">
+            <img src="assets/projects/never-miss-the-bus-menu.webp" alt="Main menu artwork" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Main menu artwork</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/never-miss-the-bus-chapter-1.webp" aria-label="Open full-size image: Chapter 1 title art · The Last Bus">
+            <img src="assets/projects/never-miss-the-bus-chapter-1.webp" alt="Chapter 1 title art · The Last Bus" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Chapter 1 title art · The Last Bus</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <a href="assets/projects/never-miss-the-bus-chapter-2.webp" aria-label="Open full-size image: Chapter 2 title art · The Forest">
+            <img src="assets/projects/never-miss-the-bus-chapter-2.webp" alt="Chapter 2 title art · The Forest" loading="lazy" decoding="async">
+          </a>
+          <figcaption>Chapter 2 title art · The Forest</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="clips-title">
+        <h2 id="clips-title">Gameplay clips</h2>
+        <div class="project-media-grid">
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>Boarding the last bus</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>After the crash</figcaption>
+        </figure>
+        <figure class="project-media-card">
+          <div class="project-media-placeholder">Clip coming soon</div>
+          <figcaption>Exploring the forest</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="project-section" aria-labelledby="examples-title">
+        <h2 id="examples-title">C# examples</h2>
+        <section class="project-code" aria-labelledby="code-example-1">
+          <h3 id="code-example-1">Bus seat interaction</h3>
+          <p>You can use a seat when it is free and your character is close enough.</p>
+          <div class="project-code-file">BusSeat.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from BusSeat.cs"><code>public bool CanUse(Transform player)
 {
     return !IsOccupied &amp;&amp; player != null &amp;&amp;
-           Vector3.Distance(player.position, SitPoint.position) &lt;= interactDistance;
+             Vector3.Distance(player.position, SitPoint.position) &lt;= interactDistance;
 }</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-2">
+          <h3 id="code-example-2">Saving story progress</h3>
+          <p>The current story state is written to a small JSON file. The save returns a success flag so the game can tell whether progress was stored.</p>
+          <div class="project-code-file">GameSaveStore.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from GameSaveStore.cs"><code>try
+{
+    Directory.CreateDirectory(Application.persistentDataPath);
+    File.WriteAllText(ProgressPath, JsonUtility.ToJson(state, true));
+    return true;
+}
+catch (Exception error)
+{
+    Debug.LogError("Cannot save game: " + error.Message);
+    return false;
+}</code></pre>
+        </section>
+
+        <section class="project-code" aria-labelledby="code-example-3">
+          <h3 id="code-example-3">Loading mouse sensitivity</h3>
+          <p>The game reads mouse sensitivity from a separate settings file. It uses a default if no settings are saved and clamps the stored value to the supported range.</p>
+          <div class="project-code-file">GameSaveStore.cs</div>
+          <pre tabindex="0" aria-label="C# excerpt from GameSaveStore.cs"><code>if (!File.Exists(SettingsPath)) return fallback;
+var settings = JsonUtility.FromJson&lt;GameSettingsState&gt;(File.ReadAllText(SettingsPath));
+return settings != null &amp;&amp; settings.version == 1
+    ? Mathf.Clamp(settings.mouseSensitivity, .1f, 5) : fallback;</code></pre>
+        </section>
       </section>
       <div class="project-detail-actions">
         <a class="github-link" href="https://github.com/Luxin079/NeverMissTheBus-GAME/commits/main/" target="_blank" rel="noopener noreferrer">View commit history</a>
